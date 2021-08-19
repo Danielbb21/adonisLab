@@ -28,17 +28,25 @@ class FileController {
         subtype: upload.subtype
       });
       return file;
-    //  const file = await File.create({name:upload.name, file: fileName,  type: upload.type});
-    //  console.log('file', file);
-    //  return file;
-
     }
+
     catch(err){
       console.log(err);
       return response.status(err.status).json({error: 'Erro no upload de arquivo'});
     }
   }
 
+  async show({request, response}){
+  try{
+    const {id} = request.params;
+    const file = await File.findOrFail(id);
+
+    return response.download(Helpers.tmpPath(`uploads/${file.file}`));
+  }
+  catch(err){
+    return response.status(err.status).json({error:'Sommeting Went Wrong'});
+  }
+  }
 
 }
 
