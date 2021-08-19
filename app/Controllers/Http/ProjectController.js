@@ -6,7 +6,7 @@ class ProjectController {
 
   async index({ request, response, view }) {
 
-    const projects = await Project.query().with('user').fetch();
+    const projects = await Project.query().with('user').with('tasks').fetch();
 
     return projects;
   }
