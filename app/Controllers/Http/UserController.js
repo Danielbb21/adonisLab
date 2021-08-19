@@ -13,6 +13,14 @@ class UserController {
       email: user.email
     };
     return user;
+  } async index({ request, response }) {
+    try {
+      const users = await User.find()
+      return users;
+    }
+    catch (err) {
+      return response.status(400).json({ error: err.message });
+    }
   }
 }
 

@@ -42,8 +42,8 @@ class ForgotPasswordController {
       console.log(moment(), user);
       const tokenExpired = moment().subtract('2', 'days').isAfter(user.token_created_at);
       console.log(tokenExpired);
-      if(tokenExpired){
-        return response.status(401).json({error: 'token expired'});
+      if (tokenExpired) {
+        return response.status(401).json({ error: 'token expired' });
       }
 
       user.token_created_at = null;
@@ -56,6 +56,8 @@ class ForgotPasswordController {
       return response.status(err.status).send({ error: 'Sommeting went wrong at reset password' })
     }
   }
+
+
 }
 
 module.exports = ForgotPasswordController
