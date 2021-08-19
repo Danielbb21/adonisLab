@@ -8,4 +8,10 @@ Route.post('password', 'ForgotPasswordController.store')
 Route.put('reset_password', 'ForgotPasswordController.update')
 Route.get('users/list', 'UserController.index')
 Route.get('upload/:id', 'FileController.show');
-Route.post('upload', 'FileController.store');
+Route.group(()=>{
+
+  Route.post('upload', 'FileController.store');
+
+  Route.resource('projects', 'ProjectController').apiOnly()
+
+}).middleware(['auth'])
