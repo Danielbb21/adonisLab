@@ -15,7 +15,7 @@ class UserController {
     return user;
   } async index({ request, response }) {
     try {
-      const users = await User.find()
+      const users = await User.all()
       return users;
     }
     catch (err) {

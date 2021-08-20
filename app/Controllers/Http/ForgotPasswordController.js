@@ -14,7 +14,7 @@ class ForgotPasswordController {
 
       const user = await User.findByOrFail('email', email);
 
-      console.log('user', user);
+      // console.log('user', user);
       user.token = cry;
       user.token_created_at = new Date();
       await user.save();
@@ -31,6 +31,7 @@ class ForgotPasswordController {
 
     }
     catch (err) {
+      console.log(err.message);
       return response.status(err.status).send({ error: 'Sommeting went wrong' })
     }
   }
